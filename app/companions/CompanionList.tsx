@@ -1,16 +1,22 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { cn } from '@/lib/utils';
 import React from 'react'
 
-const CompanionList = () => {
+interface CompanionListProps{
+    title:string;
+    companions?: Companion[];
+    classNames?: string;
+}
+
+const CompanionList = ({title, companions, classNames}:CompanionListProps) => {
   return (
-    <article>
-        <h2>Recent Sessions</h2>
+    <article className={cn('companion-list', classNames)}>
+        <h2 className='font-bold text-3xl'>Recent Sessions</h2>
 
         <Table>
-            <TableCaption></TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead></TableHead>
+                    <TableHead className='text-lg'></TableHead>
                 </TableRow>
             </TableHeader>
 
