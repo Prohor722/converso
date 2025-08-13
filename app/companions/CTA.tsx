@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CTA = () => {
@@ -17,6 +18,9 @@ const CTA = () => {
       <button className="btn-primary">
         <Image src="/icons/plus.svg" alt="plus"
           height={12} width={12} />
+        <Link href="companions/new">
+          <p>Build a New Companion</p>
+        </Link>
       </button>
     </section>
   );
