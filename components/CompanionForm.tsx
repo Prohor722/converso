@@ -165,24 +165,44 @@ const CompanionForm = () => {
           )}
         />
 
-        <FormField
+<FormField
           control={form.control}
-          name="name"
+          name="style"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Companion name</FormLabel>
+              <FormLabel>Style</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Enter companion name"
-                  className="input"
-                  {...field}
-                  value={field.value || ""}
-                />
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="input">
+                      <SelectValue placeholder="Select the style" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {[
+                      {label:"Formal", type:"formal"},
+                      {label:"Casual", type:"casual"}
+                    ].map((style) => (
+                      <SelectItem
+                        key={style.type}
+                        value={style.type}
+                        className="capitalize"
+                      >
+                        {style.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>
