@@ -20,10 +20,13 @@ const formSchema = z.object({
     topic: z.string().min(2, { message: "Topic is required "}),
     voice: z.string().min(2, { message: "Voice is required "}),
     style: z.string().min(2, { message: "Style is required "}),
-    duration: z.coerce.number().min(2, { message: "Duration is required "}),
+    duration: z.number().min(2, { message: "Duration is required "}),
 })
+
+type FormData = z.infer<typeof formSchema>
+
 const CompanionForm = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
+    const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
         defaultValues:{
             name: '',
@@ -35,7 +38,7 @@ const CompanionForm = () => {
         }
     })
 
-const onSubmit = (values: z.infer<typeof formSchema>) => {
+const onSubmit = (values: FormData) => {
     console.log(values)
   }
 
@@ -47,13 +50,81 @@ const onSubmit = (values: z.infer<typeof formSchema>) => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Companion name</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                    <Input placeholder="Enter companion name"
+                    className="input"
+                    {...field}
+                    value={field.value || ''} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="subject"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Subject</FormLabel>
+              <FormControl>
+                    <Input placeholder="Enter companion name"
+                    className="input"
+                    {...field}
+                    value={field.value || ''} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Companion name</FormLabel>
+              <FormControl>
+                    <Input placeholder="Enter companion name"
+                    className="input"
+                    {...field}
+                    value={field.value || ''} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Companion name</FormLabel>
+              <FormControl>
+                    <Input placeholder="Enter companion name"
+                    className="input"
+                    {...field}
+                    value={field.value || ''} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Companion name</FormLabel>
+              <FormControl>
+                    <Input placeholder="Enter companion name"
+                    className="input"
+                    {...field}
+                    value={field.value || ''} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
