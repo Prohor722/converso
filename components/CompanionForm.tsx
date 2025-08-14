@@ -1,8 +1,8 @@
-"use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,36 +11,44 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { subjects } from "@/constants";
 
 const formSchema = z.object({
-    name: z.string().min(2, { message: "Companion is required "}),
-    subject: z.string().min(2, { message: "Subject is required "}),
-    topic: z.string().min(2, { message: "Topic is required "}),
-    voice: z.string().min(2, { message: "Voice is required "}),
-    style: z.string().min(2, { message: "Style is required "}),
-    duration: z.number().min(2, { message: "Duration is required "}),
-})
+  name: z.string().min(2, { message: "Companion is required " }),
+  subject: z.string().min(2, { message: "Subject is required " }),
+  topic: z.string().min(2, { message: "Topic is required " }),
+  voice: z.string().min(2, { message: "Voice is required " }),
+  style: z.string().min(2, { message: "Style is required " }),
+  duration: z.number().min(2, { message: "Duration is required " }),
+});
 
-type FormData = z.infer<typeof formSchema>
+type FormData = z.infer<typeof formSchema>;
 
 const CompanionForm = () => {
-    const form = useForm<FormData>({
-        resolver: zodResolver(formSchema),
-        defaultValues:{
-            name: '',
-            subject: '',
-            topic: '',
-            voice: '',
-            style: '',
-            duration: 15,
-        }
-    })
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      subject: "",
+      topic: "",
+      voice: "",
+      style: "",
+      duration: 15,
+    },
+  });
 
-const onSubmit = (values: FormData) => {
-    console.log(values)
-  }
+  const onSubmit = (values: FormData) => {
+    console.log(values);
+  };
 
   return (
     <Form {...form}>
@@ -52,10 +60,12 @@ const onSubmit = (values: FormData) => {
             <FormItem>
               <FormLabel>Companion name</FormLabel>
               <FormControl>
-                    <Input placeholder="Enter companion name"
-                    className="input"
-                    {...field}
-                    value={field.value || ''} />
+                <Input
+                  placeholder="Enter companion name"
+                  className="input"
+                  {...field}
+                  value={field.value || ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,10 +79,28 @@ const onSubmit = (values: FormData) => {
             <FormItem>
               <FormLabel>Subject</FormLabel>
               <FormControl>
-                    <Input placeholder="Enter companion name"
-                    className="input"
-                    {...field}
-                    value={field.value || ''} />
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="input capitalize">
+                      <SelectValue placeholder="Select the subject" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {subjects.map((subject) => (
+                      <SelectItem 
+                        key={subject} 
+                        value={subject}
+                        className="capitalize"
+                      >
+                        {subject}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,10 +114,12 @@ const onSubmit = (values: FormData) => {
             <FormItem>
               <FormLabel>Companion name</FormLabel>
               <FormControl>
-                    <Input placeholder="Enter companion name"
-                    className="input"
-                    {...field}
-                    value={field.value || ''} />
+                <Input
+                  placeholder="Enter companion name"
+                  className="input"
+                  {...field}
+                  value={field.value || ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -103,10 +133,12 @@ const onSubmit = (values: FormData) => {
             <FormItem>
               <FormLabel>Companion name</FormLabel>
               <FormControl>
-                    <Input placeholder="Enter companion name"
-                    className="input"
-                    {...field}
-                    value={field.value || ''} />
+                <Input
+                  placeholder="Enter companion name"
+                  className="input"
+                  {...field}
+                  value={field.value || ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -120,10 +152,12 @@ const onSubmit = (values: FormData) => {
             <FormItem>
               <FormLabel>Companion name</FormLabel>
               <FormControl>
-                    <Input placeholder="Enter companion name"
-                    className="input"
-                    {...field}
-                    value={field.value || ''} />
+                <Input
+                  placeholder="Enter companion name"
+                  className="input"
+                  {...field}
+                  value={field.value || ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -132,7 +166,7 @@ const onSubmit = (values: FormData) => {
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-  )
-}
+  );
+};
 
-export default CompanionForm
+export default CompanionForm;
