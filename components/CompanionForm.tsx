@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { subjects } from "@/constants";
+import { Textarea } from "./ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Companion is required " }),
@@ -91,8 +92,8 @@ const CompanionForm = () => {
                   </FormControl>
                   <SelectContent>
                     {subjects.map((subject) => (
-                      <SelectItem 
-                        key={subject} 
+                      <SelectItem
+                        key={subject}
                         value={subject}
                         className="capitalize"
                       >
@@ -109,13 +110,13 @@ const CompanionForm = () => {
 
         <FormField
           control={form.control}
-          name="name"
+          name="topic"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Companion name</FormLabel>
+              <FormLabel>What should the companion help with</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Enter companion name"
+                <Textarea
+                  placeholder="Ex. Derivates & Intergrals"
                   className="input"
                   {...field}
                   value={field.value || ""}
@@ -128,17 +129,36 @@ const CompanionForm = () => {
 
         <FormField
           control={form.control}
-          name="name"
+          name="voice"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Companion name</FormLabel>
+              <FormLabel>Voice</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Enter companion name"
-                  className="input"
-                  {...field}
-                  value={field.value || ""}
-                />
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger className="input">
+                      <SelectValue placeholder="Select the voice" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {[
+                      {label:"Male", type:"male"},
+                      {label:"Female", type:"female"}
+                    ].map((voice) => (
+                      <SelectItem
+                        key={voice.type}
+                        value={voice.type}
+                        className="capitalize"
+                      >
+                        {voice.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormControl>
               <FormMessage />
             </FormItem>
