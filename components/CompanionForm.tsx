@@ -53,7 +53,7 @@ const CompanionForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mb-8 space-y-8">
         <FormField
           control={form.control}
           name="name"
@@ -146,8 +146,8 @@ const CompanionForm = () => {
                   </FormControl>
                   <SelectContent>
                     {[
-                      {label:"Male", type:"male"},
-                      {label:"Female", type:"female"}
+                      { label: "Male", type: "male" },
+                      { label: "Female", type: "female" },
                     ].map((voice) => (
                       <SelectItem
                         key={voice.type}
@@ -165,7 +165,7 @@ const CompanionForm = () => {
           )}
         />
 
-<FormField
+        <FormField
           control={form.control}
           name="style"
           render={({ field }) => (
@@ -184,8 +184,8 @@ const CompanionForm = () => {
                   </FormControl>
                   <SelectContent>
                     {[
-                      {label:"Formal", type:"formal"},
-                      {label:"Casual", type:"casual"}
+                      { label: "Formal", type: "formal" },
+                      { label: "Casual", type: "casual" },
                     ].map((style) => (
                       <SelectItem
                         key={style.type}
@@ -203,7 +203,29 @@ const CompanionForm = () => {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="duration"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Estimated Session Duration in minutes</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  placeholder="15"
+                  className="input"
+                  {...field}
+                  value={field.value || ""}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" className="w-full cursor-pointer">
+          Build Your Companion
+        </Button>
       </form>
     </Form>
   );
