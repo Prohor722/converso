@@ -3,7 +3,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <SignIn />
+    <main className='flex items-center justify-center'>
+        <SignIn />
+    </main>
   )
 }
 
