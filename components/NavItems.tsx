@@ -7,6 +7,7 @@ const links = [
     { label: "Home", url: "/" },
     { label: "Companions", url: "/companions" },
     { label: "My Journey", url: "/my-journey" },
+    { label: "Subscription", url: "/subscription" },
   ];
 
 const NavItems = () => {
